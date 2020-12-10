@@ -1,0 +1,17 @@
+trigger SetProjectNameTrigger on Project__c (after insert) {
+    
+    List<Project__c> projectsForUpdate = new List<Project__c>();
+    
+    for (Project__c clProject : Trigger.new) {
+       String projId = clProject.Project__c;
+    
+       Project__c proj = new Project__c(Id = projId);
+       
+       proj.Name__c = project.User__r.Name + ' - ' + project.Account__r.Name;
+    }
+    if(proj.name.length() < 40){
+             update projectsForUpdate;;
+            }else{
+            project.Name = 'length is higher than possible values';
+            }
+}
